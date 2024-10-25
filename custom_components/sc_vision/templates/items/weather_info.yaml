@@ -1,0 +1,30 @@
+weather_info:
+  type: custom:button-card
+  view_layout:
+    grid-area: info
+  show_icon: false
+  styles:
+    grid:
+      - grid-template-areas: '"l" "n"'
+      - grid-template-rows: 10px 40px
+    card:
+      - background: none
+      - padding: 6px 0
+      - overflow: visible
+    name:
+      - justify-self: end
+      - font-size: 14px
+      - color: var(--contrast20)
+    label:
+      - justify-self: end
+      - font-size: 26px
+      - color: var(--contrast20)
+  name: |
+    [[[
+      return hass.resources[hass['language']][`component.weather.entity_component._.state.${entity.state}`];
+    ]]]
+  label: |
+    [[[
+      return `${parseFloat(entity.attributes.temperature).toFixed(1)}°`
+    ]]]
+  show_label: true

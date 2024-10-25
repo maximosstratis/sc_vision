@@ -9,4 +9,21 @@ homeassistant:
 logger:
   default: info
   logs:
-    custom_components.integration_blueprint: debug
+    custom_components.custom_components/sc_vision: debug
+
+frontend:
+  themes: !include_dir_merge_named ../custom_components/sc_vision/theme
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /local/community/button-card/button-card.js
+      type: module
+  dashboards:
+    lovelace-yaml:
+      mode: yaml
+      filename: index.yaml
+      title: Επισκόπηση
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
+      require_admin: false

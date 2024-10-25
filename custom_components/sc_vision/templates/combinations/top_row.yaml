@@ -1,0 +1,41 @@
+top_row:
+  type: custom:button-card
+  show_icon: false
+  styles:
+    custom_fields:
+      icon:
+        - justify-self: center
+        - display: flex
+        - align-items: center
+        - justify-content: center
+    card:
+      - background: none
+      - padding: 6px 0
+      - overflow: visible
+    grid:
+      - grid-template-areas: '"menu icon info"'
+      - grid-template-columns: 1fr auto 1fr
+      - grid-template-rows: 50px
+  show_label: false
+  show_name: false
+  tap_action:
+    action: none
+  custom_fields:
+    menu:
+      card:
+        type: custom:button-card
+        template: menu
+        entity: "[[[return variables.kiosk_mode_entity]]]"
+    icon:
+      card:
+        type: custom:button-card
+        template: weather_icon
+        entity: "[[[return variables.weather_entity]]]"
+        variables:
+          size: 50px
+          useSun: true
+    info:
+      card:
+        type: custom:button-card
+        template: weather_info
+        entity: "[[[return variables.weather_entity]]]"

@@ -1,0 +1,29 @@
+menu:
+  type: custom:button-card
+  show_name: false
+  icon: mdi:menu
+  tap_action:
+    action: custom
+    service: |
+      [[[
+        this.dispatchEvent(new Event('hass-toggle-menu', { bubbles: true, composed: true}));
+      ]]]
+  hold_action:
+    action: |
+      [[[
+        return entity ? "toggle" : "none";
+      ]]]
+  styles:
+    icon:
+      - width: 24px
+      - color: var(--contrast20)
+    img_cell:
+      - width: 30px
+      - height: 30px
+      - padding: 6px
+      - justify-self: start
+    card:
+      - height: 100%
+      - background: none
+      - padding: 6px 0
+      - "--mdc-ripple-press-opacity": 0

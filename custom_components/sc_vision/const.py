@@ -1,8 +1,8 @@
-"""Constants for integration_blueprint."""
+"""Constants for custom_components/sc_vision."""
 
 from logging import Logger, getLogger
 
 LOGGER: Logger = getLogger(__package__)
 
-DOMAIN = "integration_blueprint"
+DOMAIN = "custom_components/sc_vision"
 ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"

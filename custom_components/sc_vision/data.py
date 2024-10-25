@@ -1,4 +1,4 @@
-"""Custom types for integration_blueprint."""
+"""Custom types for custom_components/sc_vision."""
 
 from __future__ import annotations
 
