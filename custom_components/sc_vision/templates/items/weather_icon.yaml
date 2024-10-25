@@ -2,6 +2,7 @@ weather_icon:
   type: custom:button-card
   variables:
     size: 50px
+    base_url: "/local/icons/weather"
   show_name: false
   show_icon: false
   styles:
@@ -40,13 +41,10 @@ weather_icon:
         };
 
         function getWeatherIcon(condition) {
-          let sun = hass.states["sun.sun"]
-          return `/local/icons/weather/${variables.useSun && sun && sun.state == "below_horizon" ? weatherIconsNight[condition] : weatherIconsDay[condition]}.svg`;
+          let sun = hass.states["sun.sun"];
+          let currentIconSet = variables.useSun && sun && sun.state == "below_horizon" ? weatherIconsNight : weatherIconsDay;
+          return `${variables.base_url}/${currentIconSet[condition]}.svg`;
         }
 
-        if (!variables.condition && !entity) {
-          return `<div>You need to define variables.condition or entity</div>`;
-        }
-
-        return `<img style="height:${variables.size}" src="${getWeatherIcon(variables.condition ?? entity?.state)}" />`
+        return `<img style="height:${variables.size}" src="${getWeatherIcon(entity.state)}" />`
       ]]]

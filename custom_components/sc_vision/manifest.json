@@ -1,5 +1,5 @@
 {
-  "domain": "custom_components/sc_vision",
+  "domain": "sc_vision",
   "name": "SC Vision",
   "codeowners": [
     "@ludeeus"
