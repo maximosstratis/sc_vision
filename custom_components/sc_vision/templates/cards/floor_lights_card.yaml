@@ -3,6 +3,7 @@ floor_lights_card:
   template:
     - dashboard_base_card
   icon: mdi:lightbulb
+  triggers_update: all
   variables:
     x_lights_count: |
       [[[

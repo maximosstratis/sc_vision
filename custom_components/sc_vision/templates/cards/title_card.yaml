@@ -1,0 +1,16 @@
+title_card:
+  type: custom:button-card
+  template:
+    - base_card
+  tap_action:
+    action: none
+  hold_action:
+    action: none
+  double_tap_action:
+    action: none
+  styles:
+    card:
+      - background: none
+    name:
+      - opacity: 1
+      - font-size: 18px
