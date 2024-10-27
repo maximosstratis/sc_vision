@@ -2,11 +2,9 @@
   "domain": "sc_vision",
   "name": "SC Vision",
   "codeowners": [
-    "@ludeeus"
+    "@maximosstratis"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/ludeeus/custom_components/sc_vision",
-  "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/ludeeus/custom_components/sc_vision/issues",
+  "iot_class": "calculated",
   "version": "0.0.0"
 }

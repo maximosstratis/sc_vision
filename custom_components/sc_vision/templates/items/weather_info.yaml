@@ -14,17 +14,17 @@ weather_info:
     name:
       - justify-self: end
       - font-size: 14px
-      - color: var(--contrast20)
+      - color: var(--highlight)
     label:
       - justify-self: end
       - font-size: 26px
-      - color: var(--contrast20)
+      - color: var(--highlight)
   name: |
     [[[
       return hass.resources[hass['language']][`component.weather.entity_component._.state.${entity.state}`];
     ]]]
   label: |
     [[[
-      return `${parseFloat(entity.attributes.temperature).toFixed(1)}°`
+      return `${parseFloat(entity.attributes.temperature).toFixed(1)}${entity.attributes.temperature_unit}`;
     ]]]
   show_label: true

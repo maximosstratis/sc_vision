@@ -31,9 +31,6 @@ top_row:
         type: custom:button-card
         template: weather_icon
         entity: "[[[return variables.weather_entity]]]"
-        variables:
-          size: 50px
-          useSun: true
     info:
       card:
         type: custom:button-card

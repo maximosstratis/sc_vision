@@ -1,0 +1,57 @@
+dashboard_base:
+  type: custom:button-card
+  template:
+    - base
+  styles:
+    card:
+      - background: var(--ha-card-background)
+
+base:
+  type: custom:button-card
+  template:
+    - state_gradient
+  tap_action:
+    action: toggle
+  hold_action:
+    action: more-info
+  show_label: true
+  label: "[[[return entity ? helpers.localize(entity) : null]]]"
+  styles:
+    card:
+      - padding: 16px
+      - background: var(--popupBG)
+    grid:
+      - grid-template-areas: '"i n" "i l"'
+      - grid-template-columns: min-content 1fr
+    img_cell:
+      - padding-right: 16px
+      - justify-self: start
+      - width: 24px
+    icon:
+      - width: 24px
+      - color: var(--highlight)
+    name:
+      - justify-self: start
+      - font-size: 14px
+      - color: var(--highlight)
+      - opacity: 0.8
+    label:
+      - justify-self: start
+      - font-size: 16px
+      - font-weight: 500
+      - padding-top: 2px
+      - color: var(--highlight)
+
+state_gradient:
+  type: custom:button-card
+  state:
+    - value: "on"
+      styles:
+        card:
+          - background: var(--active-light)
+        icon:
+          - color: var(--black)
+        name:
+          - color: var(--black)
+        label:
+          - color: var(--black)
