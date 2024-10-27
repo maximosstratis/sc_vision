@@ -1,0 +1,23 @@
+media_player_card:
+  type: custom:button-card
+  hold_action:
+    action: more-info
+  state_display: |
+    [[[
+      let state_translated = helpers.localize(entity);
+      if (["off", "unavailable", "unknown"].includes(entity.state)) {
+        return state_translated;
+      }
+      let volume = (entity.attributes.volume_level * 100).toFixed(1);
+      return `${state_translated} - ${volume}%`;
+    ]]]
+  styles:
+    grid:
+      - grid-template-areas: '"i n power_icon" "i s power_icon"'
+      - grid-template-columns: min-content 1fr min-content
+  custom_fields:
+    power_icon:
+      card:
+        type: custom:button-card
+        template: power_icon
+        entity: "[[[return entity.entity_id]]]"

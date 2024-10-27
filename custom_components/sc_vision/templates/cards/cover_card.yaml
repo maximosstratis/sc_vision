@@ -1,12 +1,17 @@
 cover_card:
   type: custom:button-card
   template:
-    - base_card
+    - popup_entity_card
+  variables:
+    x_has_position: |
+      [[[
+        return entity.attributes.hasOwnProperty('current_position');
+      ]]]
+
   state_display: |
     [[[
-      let cur_state = hass.resources[hass['language']][`component.cover.entity_component._.state.${entity.state}`];
-      let cur_pos = entity.attributes.current_position;
-      if (cur_pos) return `${cur_state} - ${cur_pos}%`
+      let cur_state = helpers.localize(entity);
+      if (variables.x_has_position) return `${cur_state} - ${entity.attributes.current_position}%`
       return cur_state;
     ]]]
   tap_action:
@@ -18,9 +23,8 @@ cover_card:
       - grid-template-columns: min-content 1fr
       - grid-template-areas: |
           [[[
-            let cur_pos = entity.attributes.current_position;
-            if (cur_pos) return '"i n" "i l" "cover_btns cover_btns" "cover_slider cover_slider"';
-            return '"i n" "i l" "cover_btns cover_btns"'
+            if (variables.x_has_position) return '"i n" "i s" "cover_btns cover_btns" "cover_slider cover_slider"';
+            return '"i n" "i s" "cover_btns cover_btns"'
           ]]]
     custom_fields:
       cover_btns:
@@ -29,8 +33,7 @@ cover_card:
         - margin-top: 8px
         - display: |
             [[[
-              let cur_pos = entity.attributes.current_position;
-              if (cur_pos) return "visible";
+              if (variables.x_has_position) return "visible";
               return "none";
             ]]]
 
