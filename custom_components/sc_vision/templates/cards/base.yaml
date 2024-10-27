@@ -53,3 +53,11 @@ state_gradient:
           - color: var(--black)
         state:
           - color: var(--black)
+
+wrapper_card:
+  type: custom:button-card
+  styles:
+    grid:
+      - grid-template-areas: '"child"'
+    card:
+      - padding: 0
