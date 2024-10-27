@@ -2,6 +2,7 @@ humidifier_card:
   type: custom:button-card
   template:
     - popup_entity_card
+    - power_icon
   tap_action:
     action: more-info
   hold_action:
@@ -19,29 +20,3 @@ humidifier_card:
     grid:
       - grid-template-areas: '"i n power_icon" "i s power_icon"'
       - grid-template-columns: min-content 1fr min-content
-    custom_fields:
-      power_icon:
-        - width: 24px
-        - height: 24px
-        - color: var(--black)
-  custom_fields:
-    power_icon:
-      card:
-        type: custom:button-card
-        show_name: false
-        show_label: false
-        icon: mdi:power
-        entity: "[[[return entity.entity_id]]]"
-        state:
-          - value: "on"
-            styles:
-              icon:
-                - color: var(--black)
-        tap_action:
-          action: toggle
-        styles:
-          card:
-            - background: none
-          icon:
-            - width: 100%
-            - color: var(--highlight)

@@ -1,22 +1,29 @@
 power_icon:
   type: custom:button-card
-  show_name: false
-  show_label: false
-  icon: mdi:power
-  state:
-    - value: "on"
-      styles:
-        icon:
-          - color: var(--black)
-  tap_action:
-    action: toggle
   styles:
-    container:
-      - width: 24px
-      - height: 24px
-      - color: var(--black)
-    card:
-      - background: none
-    icon:
-      - width: 100%
-      - color: var(--highlight)
+    custom_fields:
+      power_icon:
+        - width: 24px
+        - height: 24px
+        - color: var(--black)
+  custom_fields:
+    power_icon:
+      card:
+        type: custom:button-card
+        show_name: false
+        show_label: false
+        entity: "[[[return entity.entity_id]]]"
+        icon: mdi:power
+        state:
+          - value: "on"
+            styles:
+              icon:
+                - color: var(--black)
+        tap_action:
+          action: toggle
+        styles:
+          card:
+            - background: none
+          icon:
+            - width: 100%
+            - color: var(--highlight)
