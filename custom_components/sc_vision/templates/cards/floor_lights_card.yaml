@@ -13,7 +13,7 @@ floor_lights_card:
         let lights_on = entity_states.filter(es => es === "on").length
         return lights_on;
       ]]]
-    y_active: |
+    z_active: |
       [[[
         return variables.x_lights_count > 0;
       ]]]
@@ -25,8 +25,7 @@ floor_lights_card:
     action: call-service
     service: |
       [[[
-        return variables.y_active ? "light.turn_off" : "light.turn_on";
+        return variables.z_active ? "light.turn_off" : "light.turn_on";
       ]]]
     data:
       floor_id: "[[[return variables.floor_id]]]"
-  triggers_update: all

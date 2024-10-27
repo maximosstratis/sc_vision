@@ -31,8 +31,14 @@ top_row:
         type: custom:button-card
         template: weather_icon
         entity: "[[[return variables.weather_entity]]]"
+        tap_action:
+          action: "[[[return variables.navigation_path ? 'navigate' : 'more-info']]]"
+          navigation_path: "[[[return variables.navigation_path]]]"
     info:
       card:
         type: custom:button-card
         template: weather_info
         entity: "[[[return variables.weather_entity]]]"
+        tap_action:
+          action: "[[[return variables.navigation_path ? 'navigate' : 'more-info']]]"
+          navigation_path: "[[[return variables.navigation_path]]]"
