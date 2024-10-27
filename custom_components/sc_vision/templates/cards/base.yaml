@@ -8,8 +8,6 @@ dashboard_base_card:
 
 base_card:
   type: custom:button-card
-  template:
-    - state_gradient
   tap_action:
     action: toggle
   hold_action:
@@ -23,8 +21,8 @@ base_card:
     grid:
       - grid-template-areas: '"i n" "i s"'
       - grid-template-columns: min-content 1fr
+      - grid-column-gap: 16px
     img_cell:
-      - padding-right: 16px
       - justify-self: start
       - width: 24px
     icon:

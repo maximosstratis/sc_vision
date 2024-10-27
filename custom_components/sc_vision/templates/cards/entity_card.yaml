@@ -1,0 +1,12 @@
+entity_card:
+  type: custom:button-card
+  template:
+    - base_card
+    - state_gradient
+
+
+dashboard_entity_card:
+  type: custom:button-card
+  template:
+    - dashboard_base_card
+    - state_gradient
