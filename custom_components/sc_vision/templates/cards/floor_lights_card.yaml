@@ -1,30 +1,23 @@
-floor_lights_card:
-  template:
-    - wrapper_card
-  triggers_update: all
-  custom_fields:
-    child:
-      card:
-        type: custom:button-card
-        template: floor_lights_card_sub
-        triggers_update: all
-        variables:
-          floor_id: "[[[return variables.floor_id]]]"
-          lights_on: |
-            [[[
-              let floor = Object.values(hass.floors).find(f => f.floor_id === variables.floor_id );
-              let areas = Object.values(hass.areas).filter(a => a.floor_id === variables.floor_id).map(a => a.area_id);
-              let entities = Object.values(hass.entities).filter(e => areas.includes(e.area_id)).map(e => e.entity_id).filter(e => e.startsWith('light.'));
-              let entity_states = entities.map(e => hass.states[e].state);
-              let lights_on = entity_states.filter(es => es === "on").length
-              return lights_on;
-            ]]]
-
-
-floor_lights_card_sub:
+floor_lights_sub:
   type: custom:button-card
+  template:
+    - dashboard_base_card
   icon: mdi:lightbulb
-  name: |
+  variables:
+    x_lights_count: |
+      [[[
+        let floor = Object.values(hass.floors).find(f => f.floor_id === variables.floor_id );
+        let areas = Object.values(hass.areas).filter(a => a.floor_id === variables.floor_id).map(a => a.area_id);
+        let entities = Object.values(hass.entities).filter(e => areas.includes(e.area_id)).map(e => e.entity_id).filter(e => e.startsWith('light.'));
+        let entity_states = entities.map(e => hass.states[e].state);
+        let lights_on = entity_states.filter(es => es === "on").length
+        return lights_on;
+      ]]]
+    y_active: |
+      [[[
+        return variables.x_lights_count > 0;
+      ]]]
+  state_display: |
     [[[
       return `${variables.lights_on}`;
     ]]]
@@ -32,26 +25,8 @@ floor_lights_card_sub:
     action: call-service
     service: |
       [[[
-        return variables.lights_on > 0 ? "light.turn_off" : "light.turn_on";
+        return variables.y_active ? "light.turn_off" : "light.turn_on";
       ]]]
     data:
       floor_id: "[[[return variables.floor_id]]]"
   triggers_update: all
-  styles:
-    card:
-      - padding: 0
-      - margin: 0
-      - background: '[[[return variables.lights_on > 0 ? "var(--active-light)" : "default"]]]'
-    grid:
-      - grid-template-areas: '"i n"'
-      - grid-template-columns: min-content 1fr
-    img_cell:
-      - padding: 16px
-    icon:
-      - width: 20px
-      - color: "[[[return variables.lights_on > 0 ? 'var(--black)' : 'var(--highlight)']]]"
-    name:
-      - justify-self: start
-      - font-size: 14px
-      - font-weight: 500
-      - color: "[[[return variables.lights_on > 0 ? 'var(--black)' : 'var(--highlight)']]]"
