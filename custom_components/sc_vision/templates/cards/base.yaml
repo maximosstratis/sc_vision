@@ -1,4 +1,4 @@
-dashboard_base:
+dashboard_base_card:
   type: custom:button-card
   template:
     - base
@@ -6,7 +6,7 @@ dashboard_base:
     card:
       - background: var(--ha-card-background)
 
-base:
+base_card:
   type: custom:button-card
   template:
     - state_gradient
