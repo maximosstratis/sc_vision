@@ -1,4 +1,4 @@
-entity_card:
+popup_entity_card:
   type: custom:button-card
   template:
     - base_card
