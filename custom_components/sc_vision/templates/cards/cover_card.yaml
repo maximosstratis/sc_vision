@@ -1,0 +1,125 @@
+cover_card:
+  type: custom:button-card
+  template:
+    - popup_base_card
+  state_display: |
+    [[[
+      let cur_state = hass.resources[hass['language']][`component.cover.entity_component._.state.${entity.state}`];
+      let cur_pos = entity.attributes.current_position;
+      if (cur_pos) return `${cur_state} - ${cur_pos}%`
+      return cur_state;
+    ]]]
+  tap_action:
+    action: more-info
+  hold_action:
+    action: more-info
+  styles:
+    grid:
+      - grid-template-columns: min-content 1fr
+      - grid-template-areas: |
+          [[[
+            let cur_pos = entity.attributes.current_position;
+            if (cur_pos) return '"i n" "i l" "cover_btns cover_btns" "cover_slider cover_slider"';
+            return '"i n" "i l" "cover_btns cover_btns"'
+          ]]]
+    custom_fields:
+      cover_btns:
+        - margin-top: 8px
+      cover_slider:
+        - margin-top: 8px
+        - display: |
+            [[[
+              let cur_pos = entity.attributes.current_position;
+              if (cur_pos) return "visible";
+              return "none";
+            ]]]
+
+  custom_fields:
+    cover_btns:
+      card:
+        type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: cover_open_btn
+            entity: "[[[return entity.entity_id]]]"
+          - type: custom:button-card
+            template: cover_stop_btn
+            entity: "[[[return entity.entity_id]]]"
+          - type: custom:button-card
+            template: cover_close_btn
+            entity: "[[[return entity.entity_id]]]"
+    cover_slider:
+      card:
+        type: custom:my-slider-v2
+        entity: "[[[return entity.entity_id]]]"
+        mode: position
+        vertical: false
+        flipped: false
+        inverse: false
+        styles:
+          card:
+            - height: 46px
+          container:
+            - border-radius: 100px
+          progress:
+            - background: var(--blue)
+          thumb:
+            - background: none
+          track:
+            - background: var(--gray300)
+
+cover_move_button:
+  type: custom:button-card
+  show_name: false
+  show_state: false
+  styles:
+    icon:
+      - width: 30px
+      - color: var(--gray800)
+    card:
+      - flex: 1
+      - padding: 8px
+      - background: var(--gray300)
+    grid:
+      - grid-template-areas: '"i"'
+
+cover_open_btn:
+  type: custom:button-card
+  template: cover_move_button
+  tap_action:
+    action: call-service
+    service: cover.open_cover
+    data:
+      entity_id: "[[[return entity.entity_id]]]"
+  icon: |
+    [[[
+      let device_class = entity?.attributes?.device_class;
+      if (device_class === "curtain") return "mdi:arrow-expand-horizontal"
+      return "mdi:chevron-up";
+    ]]]
+cover_stop_btn:
+  type: custom:button-card
+  template: cover_move_button
+  tap_action:
+    action: call-service
+    service: cover.stop_cover
+    data:
+      entity_id: "[[[return entity.entity_id]]]"
+  icon: |
+    [[[
+      return "mdi:stop"
+    ]]]
+cover_close_btn:
+  type: custom:button-card
+  template: cover_move_button
+  tap_action:
+    action: call-service
+    service: cover.close_cover
+    data:
+      entity_id: "[[[return entity.entity_id]]]"
+  icon: |
+    [[[
+      let device_class = entity?.attributes?.device_class;
+      if (device_class === "curtain") return "mdi:arrow-collapse-horizontal"
+      return "mdi:chevron-down";
+    ]]]
