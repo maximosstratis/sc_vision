@@ -14,14 +14,14 @@ base:
     action: toggle
   hold_action:
     action: more-info
-  show_label: true
-  label: "[[[return entity ? helpers.localize(entity) : null]]]"
+  show_label: false
+  show_state: true
   styles:
     card:
       - padding: 16px
       - background: var(--popupBG)
     grid:
-      - grid-template-areas: '"i n" "i l"'
+      - grid-template-areas: '"i n" "i s"'
       - grid-template-columns: min-content 1fr
     img_cell:
       - padding-right: 16px
@@ -35,7 +35,7 @@ base:
       - font-size: 14px
       - color: var(--highlight)
       - opacity: 0.8
-    label:
+    state:
       - justify-self: start
       - font-size: 16px
       - font-weight: 500
@@ -53,5 +53,5 @@ state_gradient:
           - color: var(--black)
         name:
           - color: var(--black)
-        label:
+        state:
           - color: var(--black)
