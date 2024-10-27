@@ -2,7 +2,6 @@ humidifier_card:
   type: custom:button-card
   template:
     - popup_entity_card
-  show_label: true
   tap_action:
     action: more-info
   hold_action:
@@ -18,7 +17,7 @@ humidifier_card:
     ]]]
   styles:
     grid:
-      - grid-template-areas: '"i n power_icon" "i l power_icon"'
+      - grid-template-areas: '"i n power_icon" "i s power_icon"'
       - grid-template-columns: min-content 1fr min-content
     custom_fields:
       power_icon:
