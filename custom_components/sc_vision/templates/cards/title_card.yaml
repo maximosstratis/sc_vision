@@ -10,6 +10,7 @@ title_card:
     action: none
   styles:
     card:
+      - padding: 0
       - background: none
     name:
       - opacity: 1
