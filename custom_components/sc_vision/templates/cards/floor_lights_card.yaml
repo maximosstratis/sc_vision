@@ -19,7 +19,7 @@ floor_lights_card:
       ]]]
   state_display: |
     [[[
-      return `${variables.lights_on}`;
+      return `${variables.x_lights_count}`;
     ]]]
   tap_action:
     action: call-service
