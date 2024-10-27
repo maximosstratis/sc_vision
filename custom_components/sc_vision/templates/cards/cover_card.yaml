@@ -1,7 +1,7 @@
 cover_card:
   type: custom:button-card
   template:
-    - popup_base_card
+    - base_card
   state_display: |
     [[[
       let cur_state = hass.resources[hass['language']][`component.cover.entity_component._.state.${entity.state}`];
