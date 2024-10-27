@@ -1,4 +1,4 @@
-floor_lights_sub:
+floor_lights_card:
   type: custom:button-card
   template:
     - dashboard_base_card
