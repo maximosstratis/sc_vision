@@ -24,6 +24,6 @@ jobs:
           zip custom_components/sc_vision.zip -r ./
 
       - name: "Upload the ZIP file to the release"
-        uses: "softprops/action-gh-release@v2.0.8"
+        uses: "softprops/action-gh-release@v2.0.9"
         with:
           files: ${{ github.workspace }}/custom_components/custom_components/sc_vision/custom_components/sc_vision.zip
